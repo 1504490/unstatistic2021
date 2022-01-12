@@ -323,7 +323,8 @@
 					{
 						"activity": "Set variable PiplineExecutionDescription",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
