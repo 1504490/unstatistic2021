@@ -43,30 +43,9 @@
 						"mappings": [
 							{
 								"source": {
+									"name": "RegionName",
 									"type": "String",
-									"ordinal": 1
-								},
-								"sink": {
-									"name": "FileName",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"type": "String",
-									"ordinal": 2
-								},
-								"sink": {
-									"name": "SourceItemId",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"source": {
-									"type": "String",
-									"ordinal": 3
+									"physicalType": "String"
 								},
 								"sink": {
 									"name": "RegionName",
@@ -76,8 +55,9 @@
 							},
 							{
 								"source": {
+									"name": "SubRegionName",
 									"type": "String",
-									"ordinal": 4
+									"physicalType": "String"
 								},
 								"sink": {
 									"name": "SubRegionName",
@@ -87,8 +67,9 @@
 							},
 							{
 								"source": {
+									"name": "CountryName",
 									"type": "String",
-									"ordinal": 5
+									"physicalType": "String"
 								},
 								"sink": {
 									"name": "CountryName",
@@ -97,6 +78,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Year",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "Year",
 									"type": "String",
@@ -104,38 +90,15 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Count",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "Count",
 									"type": "String",
 									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"sink": {
-									"name": "sysCreatedAt",
-									"type": "DateTime",
-									"physicalType": "datetime"
-								}
-							},
-							{
-								"sink": {
-									"name": "sysChangedAt",
-									"type": "DateTime",
-									"physicalType": "datetime"
-								}
-							},
-							{
-								"sink": {
-									"name": "sysChangedBy",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"sink": {
-									"name": "sysCreatedBy",
-									"type": "Int32",
-									"physicalType": "int"
 								}
 							}
 						],
@@ -214,7 +177,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Copy uncrime to SQL",
+						"activity": "Update FileName",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -264,6 +227,41 @@
 				"linkedServiceName": {
 					"referenceName": "unstatisticsqlsnmdevlinkedservice",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Update FileName",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Copy uncrime to SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "@replace('UPDATE [staging].[uncrime_untyped] \nSET [FileName]=\"variablefilename\"\nWHERE [FileName] IS NULL\nSELECT 1;'\n, 'variablefilename'\n,pipeline().parameters.FileName\n)",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "dst_sql_dummy",
+						"type": "DatasetReference"
+					}
 				}
 			}
 		],
