@@ -923,7 +923,7 @@
 				"typeProperties": {
 					"variableName": "PiplineExecutionDescription",
 					"value": {
-						"value": "@activity('Copy countries to SQL').output",
+						"value": "@activity('Copy population to SQL').output",
 						"type": "Expression"
 					}
 				}
