@@ -5,10 +5,10 @@
 		"factoryName": {
 			"value": "unstatisticdafasnmdev"
 		},
-		"unstatisticstac_connectionString": {
+		"unstatisticsqlsnmdevlinkedservice_connectionString": {
 			"value": ""
 		},
-		"unstatisticsqlsnmdevlinkedservice_connectionString": {
+		"unstatisticstac_connectionString": {
 			"value": ""
 		},
 		"containerUri": {

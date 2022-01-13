@@ -7,13 +7,13 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "unstatisticdafasnmdev"
 		},
-		"unstatisticstac_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'unstatisticstac'"
-		},
 		"unstatisticsqlsnmdevlinkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'unstatisticsqlsnmdevlinkedservice'"
+		},
+		"unstatisticstac_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'unstatisticstac'"
 		},
 		"containerUri": {
 			"type": "string",
@@ -42,11 +42,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"unstatisticstac_connectionString": {
-						"value": "[parameters('unstatisticstac_connectionString')]"
-					},
 					"unstatisticsqlsnmdevlinkedservice_connectionString": {
 						"value": "[parameters('unstatisticsqlsnmdevlinkedservice_connectionString')]"
+					},
+					"unstatisticstac_connectionString": {
+						"value": "[parameters('unstatisticstac_connectionString')]"
 					}
 				}
 			},
