@@ -21,7 +21,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"name": "[concat(parameters('factoryName'), '/unstatistic-extract-countries')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -337,7 +337,7 @@
 						"typeProperties": {
 							"variableName": "PiplineExecutionDescription",
 							"value": {
-								"value": "@activity('Copy countries to SQL').output",
+								"value": "@{activity('Copy countries to SQL').Error.Message}",
 								"type": "Expression"
 							}
 						}
