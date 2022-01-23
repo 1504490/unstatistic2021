@@ -115,15 +115,15 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"Container": {
-								"value": "@pipeline().parameters.Container",
+								"value": "@pipeline().parameters.p_Container",
 								"type": "Expression"
 							},
 							"Path": {
-								"value": "@pipeline().parameters.Path",
+								"value": "@pipeline().parameters.p_Path",
 								"type": "Expression"
 							},
 							"FileName": {
-								"value": "@pipeline().parameters.Filename",
+								"value": "@pipeline().parameters.p_Filename",
 								"type": "Expression"
 							}
 						}
@@ -264,15 +264,15 @@
 			}
 		],
 		"parameters": {
-			"Container": {
+			"p_Container": {
 				"type": "string",
 				"defaultValue": "unstatistic-sourcefiles"
 			},
-			"Path": {
+			"p_Path": {
 				"type": "string",
 				"defaultValue": "CrimeStat.Source.UNCrime"
 			},
-			"Filename": {
+			"p_Filename": {
 				"type": "string",
 				"defaultValue": "burglary.csv"
 			}
