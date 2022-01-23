@@ -158,12 +158,14 @@
 								"type": "Expression"
 							},
 							"Path": {
-								"value": "@pipeline().parameters.p_Path",
+								"value": "@pipeline().parameters.p_Filename",
 								"type": "Expression"
 							}
 						}
 					},
-					"fieldList": [],
+					"fieldList": [
+						"childItems"
+					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"enablePartitionDiscovery": false
