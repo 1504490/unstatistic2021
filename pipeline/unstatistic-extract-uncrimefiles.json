@@ -251,7 +251,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "UPDATE [staging].[uncrime_untyped] \nSET [FileName]=\"bbb\"\nWHERE [FileName] IS NULL",
+						"sqlReaderQuery": "UPDATE [staging].[uncrime_untyped] \nSET [uncrime_untyped].[FileName]=\"bbb\"\nWHERE [uncrime_untyped].[FileName] IS NULL",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
