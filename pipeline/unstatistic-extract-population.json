@@ -909,33 +909,12 @@
 				}
 			},
 			{
-				"name": "Set variable PiplineExecutionDescription",
+				"name": "Set variable PiplineExecutionStatus",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
 						"activity": "Copy population to SQL",
 						"dependencyConditions": [
-							"Failed"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "PiplineExecutionDescription",
-					"value": {
-						"value": "@activity('Copy population to SQL').output",
-						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "Set variable PiplineExecutionStatus",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "Set variable PiplineExecutionDescription",
-						"dependencyConditions": [
-							"Succeeded",
 							"Failed"
 						]
 					}
