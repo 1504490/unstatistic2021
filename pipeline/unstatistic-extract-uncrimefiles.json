@@ -177,7 +177,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Update Filename",
+						"activity": "SP Uncrime_Untyped_FileName_Update",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -230,8 +230,8 @@
 				}
 			},
 			{
-				"name": "Update Filename",
-				"type": "Lookup",
+				"name": "SP Uncrime_Untyped_FileName_Update",
+				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
 						"activity": "Copy uncrime",
@@ -249,17 +249,41 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderQuery": "UPDATE [staging].[uncrime_untyped] \nSET [FileName]=\"bbbaaa\"\nWHERE [FileName] IS NULL",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "dst_sql_dummy",
-						"type": "DatasetReference"
-					},
-					"firstRowOnly": false
+					"storedProcedureName": "[adf].[usp_Uncrime_Untyped_FileName_Update]",
+					"storedProcedureParameters": {
+						"Description": {
+							"value": {
+								"value": "@variables('PiplineExecutionDescription')",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"PipelineName": {
+							"value": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"PipelineRunId": {
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"Status": {
+							"value": {
+								"value": "@variables('PiplineExecutionStatus')",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "unstatisticsqlsnmdevlinkedservice",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
