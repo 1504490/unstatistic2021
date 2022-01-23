@@ -251,7 +251,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "UPDATE [staging].[uncrime_untyped] \nSET [uncrime_untyped].[FileName]=\"bbb\"\nWHERE [uncrime_untyped].[FileName] IS NULL",
+						"sqlReaderQuery": {
+							"value": "@replace('UPDATE [staging].[uncrime_untyped] \nSET [FileName]=\"variablefilename\"\nWHERE [FileName] IS NULL\nSELECT 1;'\n, 'variablefilename'\n,pipeline().parameters.p_Filename\n)",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
