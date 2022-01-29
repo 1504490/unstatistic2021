@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy population to SQL",
+				"name": "Copy population from csv to SQL",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -848,7 +848,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Copy population to SQL",
+						"activity": "Copy population from csv to SQL",
 						"dependencyConditions": [
 							"Succeeded",
 							"Skipped"
@@ -913,7 +913,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Copy population to SQL",
+						"activity": "Copy population from csv to SQL",
 						"dependencyConditions": [
 							"Failed"
 						]
